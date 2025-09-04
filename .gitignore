@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+*.pkl
+*.joblib
+artifacts/
+mlruns/
+data/raw/*
+!data/raw/.gitkeep
