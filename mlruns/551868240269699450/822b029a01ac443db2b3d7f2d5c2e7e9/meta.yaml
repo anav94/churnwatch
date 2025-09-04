@@ -1,0 +1,14 @@
+artifact_uri: /Users/apple/Desktop/churnwatch/mlruns/551868240269699450/822b029a01ac443db2b3d7f2d5c2e7e9/artifacts
+end_time: 1756981266368
+entry_point_name: ''
+experiment_id: '551868240269699450'
+lifecycle_stage: active
+run_id: 822b029a01ac443db2b3d7f2d5c2e7e9
+run_name: mercurial-kite-867
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756981256283
+status: 3
+tags: []
+user_id: apple

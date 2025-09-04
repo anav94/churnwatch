@@ -1,0 +1,10 @@
+artifact_location: /Users/apple/Desktop/churnwatch/mlruns/551868240269699450/models/m-f3874fdbb7354c7c85ad1c30c1b20b3f/artifacts
+creation_timestamp: 1756981150861
+experiment_id: '551868240269699450'
+last_updated_timestamp: 1756981152577
+model_id: m-f3874fdbb7354c7c85ad1c30c1b20b3f
+model_type: null
+name: model
+source_run_id: 1b358ebea26b43e8bccfd421378e2f64
+status: 2
+status_message: null

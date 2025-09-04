@@ -1,0 +1,14 @@
+artifact_uri: /Users/apple/Desktop/churnwatch/mlruns/551868240269699450/9d656f484aa34af887cfd2f02ff7181c/artifacts
+end_time: 1756981253435
+entry_point_name: ''
+experiment_id: '551868240269699450'
+lifecycle_stage: active
+run_id: 9d656f484aa34af887cfd2f02ff7181c
+run_name: capable-lark-861
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756981249933
+status: 3
+tags: []
+user_id: apple
