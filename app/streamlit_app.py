@@ -1,11 +1,13 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import joblib, pathlib
+import joblib
+from pathlib import Path
 
 st.set_page_config(page_title="ChurnWatch – Risk Cohorts & What-If", layout="wide")
 
-MODEL_PATH = pathlib.Path("artifacts/model.joblib")
+# Fixed path → looks for model.joblib inside the app folder
+MODEL_PATH = Path(__file__).parent / "model.joblib"
 model = joblib.load(MODEL_PATH)
 
 LEAK_COLS = ["Churn","Churn Label","Churn Value","Churn Score","Churn Reason"]
@@ -20,7 +22,8 @@ def _read_table(file):
 def _clean(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     for c in LEAK_COLS:
-        if c in df.columns: df = df.drop(columns=[c])
+        if c in df.columns:
+            df = df.drop(columns=[c])
     for c in df.select_dtypes(include=["object"]).columns:
         df[c] = df[c].astype(str).str.strip()
         df.loc[df[c]=="", c] = np.nan
@@ -38,9 +41,11 @@ def _clean(df: pd.DataFrame) -> pd.DataFrame:
     exp_cat = list(pre.transformers_[0][2])
     exp_num = list(pre.transformers_[1][2])
     for col in exp_cat:
-        if col not in df.columns: df[col] = "Unknown"
+        if col not in df.columns:
+            df[col] = "Unknown"
     for col in exp_num:
-        if col not in df.columns: df[col] = 0
+        if col not in df.columns:
+            df[col] = 0
     return df
 
 st.title("ChurnWatch – Risk Cohorts & What-If")
@@ -60,11 +65,14 @@ if uploaded is not None:
     row = feats.iloc[[idx]].copy()
 
     if "Tenure Months" in row.columns:
-        val = float(row.iloc[0]["Tenure Months"]); row.iloc[0, row.columns.get_loc("Tenure Months")] = st.slider("Tenure Months", 0.0, max(float(val*2), 200.0), val, 1.0)
+        val = float(row.iloc[0]["Tenure Months"])
+        row.iloc[0, row.columns.get_loc("Tenure Months")] = st.slider("Tenure Months", 0.0, max(float(val*2), 200.0), val, 1.0)
     if "Monthly Charges" in row.columns:
-        val = float(row.iloc[0]["Monthly Charges"]); row.iloc[0, row.columns.get_loc("Monthly Charges")] = st.slider("Monthly Charges", 0.0, max(float(val*2), 200.0), val, 1.0)
+        val = float(row.iloc[0]["Monthly Charges"])
+        row.iloc[0, row.columns.get_loc("Monthly Charges")] = st.slider("Monthly Charges", 0.0, max(float(val*2), 200.0), val, 1.0)
     if "Total Charges" in row.columns:
-        val = float(row.iloc[0]["Total Charges"]); row.iloc[0, row.columns.get_loc("Total Charges")] = st.slider("Total Charges", 0.0, max(float(val*2), 200.0), val, 1.0)
+        val = float(row.iloc[0]["Total Charges"])
+        row.iloc[0, row.columns.get_loc("Total Charges")] = st.slider("Total Charges", 0.0, max(float(val*2), 200.0), val, 1.0)
 
     for col, choices in {
         "Contract": ["Month-to-month","One year","Two year"],
